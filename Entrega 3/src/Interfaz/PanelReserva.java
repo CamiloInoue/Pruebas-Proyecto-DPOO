@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+
 public class PanelReserva extends JPanel implements ActionListener{
 	
 	private VentanaPrincipal ventana;
