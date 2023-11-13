@@ -1,9 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Registro {
+public class Registro implements Serializable {
 	private ArrayList<ArrayList<Object>> registro;
 	public Registro() {
 		ArrayList<ArrayList<Object>> registro=new ArrayList<>();

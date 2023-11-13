@@ -1,9 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Vehiculo {
+public class Vehiculo implements Serializable {
 	private Categoria categoria;
 	private Registro registro;
 	private String placa;

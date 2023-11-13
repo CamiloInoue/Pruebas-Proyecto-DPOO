@@ -38,7 +38,7 @@ public class Inventario {
                 }
             }
         }
-		System.out.println("No se encontró el vehiculo");
+		//System.out.println("No se encontró el vehiculo");
 		return null;
 	}
 	
@@ -81,6 +81,12 @@ public class Inventario {
 		String SedeVehiculo=vehiculo.getnombreSede();
 		ArrayList<Vehiculo> listaVehiculos = vehiculos.get(SedeVehiculo);
 		listaVehiculos.remove(vehiculo);
+		try {
+			this.guardarVehiculo();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
