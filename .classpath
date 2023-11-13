@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="consola/" kind="src" path="Entrega 3/src"/>
+	<classpathentry kind="src" path="Entrega 3/src/consola"/>
+	<classpathentry kind="output" path="Entrega 3/bin"/>
+</classpath>
