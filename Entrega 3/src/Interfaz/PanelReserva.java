@@ -12,31 +12,38 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.DateFormatter;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+
+import modelo.DateLabelFormater;
 
 public class PanelReserva extends JPanel implements ActionListener{
 	
 	private VentanaPrincipal ventana;
 	
 	private JLabel lblTitulo;
-	private JLabel lbl1;
-	private JLabel lbl2;
-	private JLabel lbl3;
-	private JLabel lbl4;
-	private JLabel lbl5;
-	private JLabel lbl6;
+	private JLabel lblSedeRec;
+	private JLabel lblSedeDev;
+	private JLabel lblTipo;
+	private JLabel lblValor;
+	private JLabel lblFechaRec;
+	private JLabel lblFechaDev;
 	
-	private JComboBox<String> combo1;
-	private JComboBox<String> combo2;
-	private JComboBox<String> combo3;
+	private JComboBox<String> comboSedeRec;
+	private JComboBox<String> comboSedeDev;
+	private JComboBox<String> comboTipo;
 	
 	private JTextField txt1;
-	private JTextField txt2;
-	private JTextField txt3;
 	
 	private JButton btnCrear;
-
+	
 	public PanelReserva(VentanaPrincipal ventana) {
 		// TODO Auto-generated constructor stub
 		
@@ -49,29 +56,42 @@ public class PanelReserva extends JPanel implements ActionListener{
 		gbc.gridwidth = 4;
 		gbc.insets = new Insets(10, 10, 10, 10);
 		
+		//El manejo de fechas se hará sin atribución
+
+		UtilDateModel model1 = new UtilDateModel();
+		Properties p1 = new Properties();
+		p1.put("text.today", "Today");
+		p1.put("text.month", "Month");
+		p1.put("text.year", "Year");
+		UtilDateModel model2 = new UtilDateModel();
+		Properties p2 = new Properties();
+		p2.put("text.today", "Today");
+		p2.put("text.month", "Month");
+		p2.put("text.year", "Year");
+		JDatePanelImpl datePanelRec = new JDatePanelImpl(model1, p1);
+		JDatePickerImpl datePickerRec = new JDatePickerImpl(datePanelRec, new DateLabelFormater());
+		JDatePanelImpl datePanelDev = new JDatePanelImpl(model2, p2);
+		JDatePickerImpl datePickerDev = new JDatePickerImpl(datePanelDev, new DateLabelFormater());
+
+		
 		lblTitulo = new JLabel("Crear una nueva reserva:");
-		lbl1 = new JLabel("Sede recolección:");
-		lbl2 = new JLabel("Sede devolución:");
-		lbl3 = new JLabel("Tipo de vehículo:");
-		lbl4 = new JLabel("Valor del servicio:");
-		lbl5 = new JLabel("Fecha de recolección (dd-mm-aaaa):");
-		lbl6 = new JLabel("Fecha de devolución (dd-mm-aaaa):");
-		
-		String[] opciones1 = {"Sede 1", "Sede 2", "Sede 3"};
-        DefaultComboBoxModel<String> modelo1 = new DefaultComboBoxModel<>(opciones1);
-		combo1 = new JComboBox<String>(modelo1);
-		
-		String[] opciones2 = {"Sede 1", "Sede 2", "Sede 3"};
-        DefaultComboBoxModel<String> modelo2 = new DefaultComboBoxModel<>(opciones2);
-		combo2 = new JComboBox<String>(modelo2);
-		
-		String[] tipos = {"Tipo 1", "Tipo 2", "Tipo 3"};
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(tipos);
-		combo3 = new JComboBox<String>(modelo);
+		lblSedeRec = new JLabel("Sede recolección:");
+		lblSedeDev = new JLabel("Sede devolución:");
+		lblTipo = new JLabel("Tipo de vehículo:");
+		lblValor = new JLabel("Valor del servicio:");
+		lblFechaRec = new JLabel("Fecha de recolección:");
+		lblFechaDev = new JLabel("Fecha de devolución:");
+
+
+		comboSedeRec = new JComboBox<>(this.ventana.darSedes());
+
+		comboSedeDev = new JComboBox<>(this.ventana.darSedes());
+
+		String[] tipos = {"Manual", "Semiautomática", "automática", "Manumática"};
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(tipos);
+		comboTipo = new JComboBox<String>(modelo);
 		
 		txt1 = new JTextField();
-		txt2 = new JTextField();
-		txt3 = new JTextField();
 		
 		btnCrear = new JButton("Crear reserva");
 		btnCrear.addActionListener(this);
@@ -86,34 +106,34 @@ public class PanelReserva extends JPanel implements ActionListener{
 		
 		gbc.gridx=0;
 		gbc.gridy++;
-		add(lbl1, gbc);
+		add(lblSedeRec, gbc);
 		gbc.gridy++;
-		add(lbl2, gbc);
+		add(lblSedeDev, gbc);
 		gbc.gridy++;
-		add(lbl3, gbc);
+		add(lblTipo, gbc);
 		gbc.gridy++;
-		add(lbl4, gbc);
+		add(lblValor, gbc);
 		gbc.gridy++;
-		add(lbl5, gbc);
+		add(lblFechaRec, gbc);
 		gbc.gridy++;
-		add(lbl6, gbc);
+		add(lblFechaDev, gbc);
 
 		
 		gbc.gridx+=4;
 		gbc.gridy = 0;
 		
 		gbc.gridy++;
-		add(combo1, gbc);
+		add(comboSedeRec, gbc);
 		gbc.gridy++;
-		add(combo2, gbc);
+		add(comboSedeDev, gbc);
 		gbc.gridy++;
-		add(combo3, gbc);
+		add(comboTipo, gbc);
 		gbc.gridy++;
 		add(txt1, gbc);
 		gbc.gridy++;
-		add(txt2, gbc);
+		add(datePickerRec, gbc);
 		gbc.gridy++;
-		add(txt3, gbc);
+		add(datePickerDev, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy++;
@@ -126,6 +146,8 @@ public class PanelReserva extends JPanel implements ActionListener{
 		
 		
 		txt1.setEditable(false);
+		txt1.setSize(30,150);
+
 	}
 
 	@Override
