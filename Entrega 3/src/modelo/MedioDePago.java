@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class MedioDePago {
+public class MedioDePago implements Serializable{
 
 	private String tipoPago;
 	private int numeroPago;
