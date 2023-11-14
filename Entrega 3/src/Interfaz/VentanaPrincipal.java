@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import Interfaz.PanelLogin;
 import modelo.Categoria;
@@ -33,7 +34,7 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal() throws IOException {
 		
 		this.renticar=new Renticar();
-		setSize( 750, 600 );
+		setSize( 1200, 800 );
 		setTitle( "Renticar" );
 		setDefaultCloseOperation( EXIT_ON_CLOSE );
 		
@@ -92,7 +93,7 @@ public class VentanaPrincipal extends JFrame {
 		this.renticar.eliminarVehiculo(placa);
 	}
 	
-	public void registrarUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento, String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
+	public void registrarUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,Date fechaNacimiento, String idLicencia,Date fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
 	{
 		this.renticar.crearUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
 	}
@@ -103,7 +104,6 @@ public class VentanaPrincipal extends JFrame {
 		try {
 			this.renticar.crearSede(nombre,direccion,horariosAtencion);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
 			e.printStackTrace();
 		}
@@ -128,24 +128,7 @@ public class VentanaPrincipal extends JFrame {
 	{
 		return this.renticar.crearReserva(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
 	}
-	public void buscarVehiculo()
-    {
-        String placaVehiculo= JOptionPane.showInputDialog( this, "Ingrese la placa del vehiculo", 
-                "Consultar Vehiculo Por Placa", JOptionPane.QUESTION_MESSAGE );
-        
-        if(placaVehiculo!=null)
-        {
-            try
-            {
-                Vehiculo buscado= darVehiculo(placaVehiculo);
-                principalPanel.actualizar( buscado );
-            }
-            catch( Exception e )
-            {
-            	JOptionPane.showMessageDialog(null, "No se encontró el vehiculo");
-            }
-        }
-    }
+	
 	//metodos para cambiar layouts
 	public void mostrarLogin() 
 	{
@@ -182,6 +165,10 @@ public class VentanaPrincipal extends JFrame {
 		ventana.setResizable( false );
 		ventana.setVisible(true);
 	}
+
+
+}
+
 
 
 }
