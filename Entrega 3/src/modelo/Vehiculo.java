@@ -74,8 +74,22 @@ public class Vehiculo implements Serializable {
 		return sedeUbicado;
 	}
 
-	public Object getPlaca() {
+	public String getmarca() {
+		return marca;
+	}
+	
+	public String getmodelo() {
+		return modelo;
+	}
+	public String getcolor() {
+		return color;
+	}
+
+	public String getPlaca() {
 		return placa;
+	}
+	public String getTransmision() {
+		return transmision;
 	}
 
 }

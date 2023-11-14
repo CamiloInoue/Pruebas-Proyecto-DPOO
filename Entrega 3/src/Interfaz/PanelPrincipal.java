@@ -1,4 +1,5 @@
 package Interfaz;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +9,8 @@ import modelo.Vehiculo;
 
 public class PanelPrincipal extends JPanel implements ActionListener {
 	private VentanaPrincipal ventana;
-	
-	private JLabel lblTitulo;
-	private JLabel lblID;
+	private MatrizColoreada Grafica;
+	private JLabel lblDisponibilidad;
     private JLabel lblMarca;
     private JLabel lblPlaca;
     private JLabel lblTipoDeTransmision;
@@ -18,10 +18,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private JLabel lblModeloDeVehiculo;
     private JLabel lblColor;
     private JLabel lblCapacidad;
-    private JLabel lblImagen;
-    private ImageIcon Imagen;
+    private JLabel lblTitulo;
     
-    private JTextField txtID;
+    private JTextField txtDisponibilidad;
     private JTextField txtMarca;
     private JTextField txtPlaca;
     private JTextField txtTipoDeTransmision;
@@ -38,9 +37,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     
     private JPanel panelBotones;
     private JPanel panelInformacion;
-    private JPanel panelImagen;
-    private JPanel panelCentro;
-    
+    private Vehiculo vehiculoActual;
     
     
 	public PanelPrincipal(VentanaPrincipal ventana) {
@@ -54,20 +51,18 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 		
 		 add(panelBotones,BorderLayout.EAST);
 		 
-		 panelImagen=new JPanel();
-		 panelCentro=new JPanel();
 	     panelInformacion = new JPanel( );
 	     
 	     
 	     panelInformacion.setLayout(new GridLayout(8, 2, 100, 5)); 
 	     
-	     lblID=new JLabel("ID:");
-	     panelInformacion.add(lblID);
-	     txtID=new JTextField(" ");
-	     panelInformacion.add(txtID);
-	     txtID.setEditable( false );
-	     lblID.setHorizontalAlignment(SwingConstants.CENTER);
-	     txtID.setPreferredSize(new Dimension(230, 30));
+	     lblDisponibilidad=new JLabel("Disponibilidad:");
+	     panelInformacion.add(lblDisponibilidad);
+	     txtDisponibilidad=new JTextField(" ");
+	     panelInformacion.add(txtDisponibilidad);
+	     txtDisponibilidad.setEditable( false );
+	     lblDisponibilidad.setHorizontalAlignment(SwingConstants.CENTER);
+	     txtDisponibilidad.setPreferredSize(new Dimension(230, 30));
 	     
 	     lblMarca=new JLabel("Marca:");
 	     panelInformacion.add(lblMarca);
@@ -119,18 +114,10 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 	     txtCapacidad.setEditable( false );
 	     lblCapacidad.setHorizontalAlignment(SwingConstants.CENTER);
 	     
-	     //Panel Imagen
-	     panelInformacion.add(panelImagen);
-	     lblImagen = new JLabel( );
-	     ImageIcon icono = new ImageIcon( "lamborghini.jpg" );
-	     lblImagen.setIcon( icono );
-	     panelImagen.add(lblImagen);
 	     validate();
 	    
-	     panelCentro.add(panelInformacion,BorderLayout.CENTER);
-	     panelCentro.add(panelImagen,BorderLayout.SOUTH);
-	     add(panelCentro,BorderLayout.CENTER);
-	     
+	     add(panelInformacion,BorderLayout.CENTER);
+
 	     //Panel Botones
 	     panelBotones.setLayout(new GridLayout(11,1));
 	     
@@ -174,15 +161,29 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 	     
 	     
 	}
+	public void actualizar(Vehiculo vehiculo)
+    {
+		if (vehiculo.isDisponible()){
+			txtDisponibilidad.setText("Disponible");
+		}else {
+			txtDisponibilidad.setText("No Disponible");
+		}
+		txtMarca.setText( vehiculo.getmarca());
+		txtPlaca.setText( vehiculo.getPlaca());
+		txtTipoDeTransmision.setText( vehiculo.getTransmision());
+		txtSede.setText( vehiculo.getsedeUbicado().getNombre());
+		txtModeloDeVehiculo.setText( vehiculo.getmodelo());
+		txtColor.setText( vehiculo.getcolor());
+		vehiculoActual=vehiculo;
+//		TODO txtCapacidad.setText( vehiculo.);
+
+    }
 	public void actionPerformed( ActionEvent evento )
     {
         // TODO Auto-generated method stub
         if(evento.getActionCommand( ).equals( "Consultar" ))
         {
-        	String placa = JOptionPane.showInputDialog("Ingrese la placa del vehiculo");
-        	Vehiculo vehiculo = this.ventana.darVehiculo(placa);
-        	
-        	//TODO actualizar datos del vehiculo en  la interfaz
+        	ventana.buscarVehiculo();
         }
         else if (evento.getActionCommand( ).equals( "Registrar" ))
         {
@@ -191,15 +192,45 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         else if (evento.getActionCommand( ).equals( "Eliminar" ))
         {
         	String placa = JOptionPane.showInputDialog("Ingrese la placa del vehiculo");
-        	this.ventana.eliminarVehiculo(placa);
+        	if(placa!=null)
+            {
+                try
+                {
+                  	this.ventana.eliminarVehiculo(placa);
+                }
+                catch( Exception e )
+                {
+                	JOptionPane.showMessageDialog(null, "No se encontró el vehiculo");
+                }
+            }
+        	
         }
         else if (evento.getActionCommand( ).equals( "Novedades" ))
         {
-            //cambiar estado vehiculo
+        	String[] opciones = {"En Mantenimiento", "Alquilado", "Disponible"};
+            JComboBox<String> desplegable = new JComboBox<>(opciones);
+
+            int resultado = JOptionPane.showOptionDialog(
+                    panelInformacion,
+                    desplegable,
+                    "Seleccione el estado del vehículo",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, null, null);
+
+            if (resultado == JOptionPane.OK_OPTION) {
+                String seleccion = (String) desplegable.getSelectedItem();
+                // Aquí puedes realizar acciones con la opción seleccionada, por ejemplo, mostrar un mensaje
+                JOptionPane.showMessageDialog(panelInformacion, "Estado seleccionado: " + seleccion,"Resultado", JOptionPane.INFORMATION_MESSAGE);
+//             TODO   Cambia estado vehiculoActual.setEstado(seleccion, null);
+            }
+        	//cambiar estado vehiculo
         }
         else if (evento.getActionCommand( ).equals( "Grafica" ))
         {
-            //
+        	Grafica=new MatrizColoreada();
+        	Grafica.setVisible(true);
+        	Grafica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
 }
 }

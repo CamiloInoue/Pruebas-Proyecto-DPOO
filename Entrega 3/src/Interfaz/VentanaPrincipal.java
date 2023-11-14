@@ -128,7 +128,24 @@ public class VentanaPrincipal extends JFrame {
 	{
 		return this.renticar.crearReserva(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
 	}
-	
+	public void buscarVehiculo()
+    {
+        String placaVehiculo= JOptionPane.showInputDialog( this, "Ingrese la placa del vehiculo", 
+                "Consultar Vehiculo Por Placa", JOptionPane.QUESTION_MESSAGE );
+        
+        if(placaVehiculo!=null)
+        {
+            try
+            {
+                Vehiculo buscado= darVehiculo(placaVehiculo);
+                principalPanel.actualizar( buscado );
+            }
+            catch( Exception e )
+            {
+            	JOptionPane.showMessageDialog(null, "No se encontró el vehiculo");
+            }
+        }
+    }
 	//metodos para cambiar layouts
 	public void mostrarLogin() 
 	{
