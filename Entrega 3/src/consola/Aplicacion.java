@@ -2,7 +2,7 @@
 //
 //import java.io.BufferedReader;
 //import java.io.IOException;
-//import java.io.InputStreamReader;
+//import java.io.InputStreamRea
 //
 //import renticar.Renticar;
 //
@@ -20,15 +20,15 @@
 //	
 //	public void login() throws IOException
 //	{
-//		System.out.println("Bienvenido a la aplicación de Renticar");
+//		System.out.println("Bienvenido a la aplicaciÃ³n de Renticar");
 //		
 //		boolean funcionando =true;
 //		int opcion =0;
 //		while (funcionando)
 //		{
-//		System.out.println("\n--------------------------------------\n¿Tiene una cuenta?:");
+//		System.out.println("\n--------------------------------------\nÂ¿Tiene una cuenta?:");
 //		
-//		System.out.println("1 para sí\n2 para no");
+//		System.out.println("1 para sÃ­\n2 para no");
 //		
 //		try {
 //			opcion = Integer.parseInt(input("->"));
@@ -61,7 +61,7 @@
 //		
 //		while (!centinela)
 //		{
-//			System.out.println("¡Credenciales incorrectas!");
+//			System.out.println("Â¡Credenciales incorrectas!");
 //			String usernamep = input("Ingrese su username: ");
 //			String passwordp = input("Ingrese su password: ");
 //			
@@ -75,7 +75,7 @@
 //			System.out.println("Menu");
 //			Object[] resultado = this.renticar.getcontrolUsuarios().generarMenuSegunUsuario(); 
 //			System.out.println((String) resultado[0]);
-//			System.out.println("14. Salir de la aplicación.");
+//			System.out.println("14. Salir de la aplicaciÃ³n.");
 //		
 //			return (int) resultado[1];
 //		}
@@ -85,20 +85,20 @@
 //		boolean funcionando=true;
 //		while (funcionando == true)
 //		{	int nOpciones = this.mostrarmenu();
-//			int opcion = Integer.parseInt(input("Ingrese la opción que desea ejecutar: "));
+//			int opcion = Integer.parseInt(input("Ingrese la opciÃ³n que desea ejecutar: "));
 //			
 //			if (opcion>0 & opcion<=nOpciones)
 //			{//TODO ejecutar opciones
 //				//OPCIONES:
 ////				//todos/puede alquilar
-////				String o1 = "1. Alquilar un vehículo";
-////				String o2 = "2. Reservar un vehículo.";
+////				String o1 = "1. Alquilar un vehÃ­culo";
+////				String o2 = "2. Reservar un vehÃ­culo.";
 ////				String o3 = "3. Modificar una reserva.";
 ////				
 ////				//empleados
-////				String o4 = "4. Reportar novedad vehículo."; //mantenimiento o algo así
-////				String o5 = "5. Entrega vehículo"; //conductores adicionales y cosas así, modificar el alquiler
-////				String o6 = "6. Recibir vehículo"; //entrega, recibir en la empresa}
+////				String o4 = "4. Reportar novedad vehÃ­culo."; //mantenimiento o algo asÃ­
+////				String o5 = "5. Entrega vehÃ­culo"; //conductores adicionales y cosas asÃ­, modificar el alquiler
+////				String o6 = "6. Recibir vehÃ­culo"; //entrega, recibir en la empresa}
 ////				
 ////				String o7 ="7. Reserva especial para un cliente interno";//enviar un vehiculo de una sede a otra
 ////				String o8 = "8. Actualizar el estado de un carro."; //mantenimiento, se estima una fecha cuando vuelva a estar disponible
@@ -108,10 +108,10 @@
 ////				
 ////				String o9 ="9. Crear una cuenta para un empleado";
 ////				//admin general
-////				String o10 = "10.  Agregar un vehículo al inventario.";
-////				String o11 = "11.  Dar de baja un vehículo en el inventario.";
+////				String o10 = "10.  Agregar un vehÃ­culo al inventario.";
+////				String o11 = "11.  Dar de baja un vehÃ­culo en el inventario.";
 ////				String o12 = "12. Crear una sede.";
-////				String o13 = "13. Modificar información de una sede.";//pendiente
+////				String o13 = "13. Modificar informaciÃ³n de una sede.";//pendiente
 //				
 //				
 //				if (opcion ==1) {this.renticar.alquilarVehiculo();}
@@ -129,7 +129,7 @@
 //			}
 //			if (opcion ==14) {funcionando = false;}
 //			
-//			else {System.out.println("Ingrese una opción válida.");}
+//			else {System.out.println("Ingrese una opciÃ³n vÃ¡lida.");}
 //		}	
 //		
 //		
