@@ -95,7 +95,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	public void registrarUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,Date fechaNacimiento, String idLicencia,Date fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
 	{
-		this.renticar.crearUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
+		this.renticar.crearUsuario(username,password, rol,nombre, telefono,email,apellido,pais,null, idLicencia,null,imagenLicencia,imagenDocumento,idDocumento);
 	}
 	
 	
@@ -170,5 +170,3 @@ public class VentanaPrincipal extends JFrame {
 }
 
 
-
-}

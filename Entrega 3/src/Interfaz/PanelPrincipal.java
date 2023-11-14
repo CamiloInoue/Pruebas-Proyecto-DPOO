@@ -182,8 +182,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     {
         // TODO Auto-generated method stub
         if(evento.getActionCommand( ).equals( "Consultar" ))
-        {
-        	ventana.buscarVehiculo();
+        {	String placa = JOptionPane.showInputDialog("Ingrese la placa del vehiculo");
+        	this.vehiculoActual=ventana.darVehiculo(placa);
+        	this.actualizar(vehiculoActual);
         }
         else if (evento.getActionCommand( ).equals( "Registrar" ))
         {
