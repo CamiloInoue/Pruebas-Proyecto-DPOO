@@ -34,6 +34,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private JButton btnEliminarVehiculo;
     private JButton btnReportarNovedades;
     private JButton btnVerGrafica;
+    private JButton btnRegresarMenu;
     
     private JPanel panelBotones;
     private JPanel panelInformacion;
@@ -158,7 +159,11 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 	     
 	     panelBotones.add(new JLabel( ));
 	     
-	     
+	     btnRegresarMenu=new JButton("Regresar al menu");
+	     panelBotones.add(btnRegresarMenu);
+	     btnRegresarMenu.addActionListener( this );
+	     btnRegresarMenu.setActionCommand( "menu" );
+	     panelBotones.add(new JLabel( ));
 	     
 	}
 	public void actualizar(Vehiculo vehiculo)
@@ -233,5 +238,9 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         	Grafica.setVisible(true);
         	Grafica.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
-}
+        else if (evento.getActionCommand( ).equals( "menu" ))
+        {
+        	this.ventana.mostrarMenu();
+        }
+    }
 }

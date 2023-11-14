@@ -12,8 +12,7 @@ public class MatrizColoreada extends JFrame {
 
     public MatrizColoreada() {
         setTitle("Matriz Coloreada");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     }
