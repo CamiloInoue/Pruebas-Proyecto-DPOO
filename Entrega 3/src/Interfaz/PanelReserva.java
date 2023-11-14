@@ -91,7 +91,7 @@ public class PanelReserva extends JPanel implements ActionListener{
 		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(tipos);
 		comboTipo = new JComboBox<String>(modelo);
 		
-		txt1 = new JTextField();
+		txt1 = new JTextField(20);
 		
 		btnCrear = new JButton("Crear reserva");
 		btnCrear.addActionListener(this);
